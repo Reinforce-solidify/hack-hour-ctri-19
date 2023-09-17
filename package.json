@@ -1,0 +1,25 @@
+{
+  "name": "hack-hour-ctri-19",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "test": "jest",
+    "test-hh": "bash ./scripts/run-test.sh"
+  },
+  "dependencies": {
+
+  },
+  "devDependencies": { 
+    "@types/node": "^18.11.9",
+    "jest": "^24.9.0",
+    "typescript": "^4.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodesmithLLC/hack-hour-ctri-19.git"
+  },
+  "main": "index.js",
+  "author": "Kyle Combs",
+  "license": "ISC"
+}
