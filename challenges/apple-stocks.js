@@ -4,7 +4,7 @@ Consider an array called apple-stock as an argument. This array
 represents the variation of an Apple stock during a single day. 
 The values in the array are in chronological order.
 
-ex: [1000, 500, 1500, 2000, 0] --> The stock began at 1000 and closed at 0;
+ex:[1000, 500, 1500, 2000, 0] --> The stock began at 1000 and closed at 0;
 
 Write a function called highestProfit that calculates the highest profit 
 you can make in the given day by buying and selling a single Apple stock. 
