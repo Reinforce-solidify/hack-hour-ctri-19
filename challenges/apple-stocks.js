@@ -21,7 +21,7 @@ calculate profit along the array.
 */
 
 const highestProfit = apple_stock => {
-
+    
 }
 
 module.exports = {highestProfit}
