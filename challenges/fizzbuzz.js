@@ -47,7 +47,19 @@ fizzbuzzbazz(22);
 */
 
 const fizzbuzzbazz = num => {
-  
+  const output = [];
+  for (let i = 1; i <= num; i ++) {
+    let str = '';
+
+    if (i % 3 === 0) str += 'fizz'
+    if (i % 5 === 0) str += 'buzz'
+    if (i % 7 === 0) str += 'bazz'
+
+    output.push(str === '' ? i : str);
+  }
+
+  return output;
 };
 
+console.log(fizzbuzzbazz(35));
 module.exports = {fizzbuzz, fizzbuzzbazz};
