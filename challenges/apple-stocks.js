@@ -21,7 +21,24 @@ calculate profit along the array.
 */
 
 const highestProfit = apple_stock => {
-    
+    if (!apple_stock || apple_stock.length < 2) return 0;
+
+    let maxProfit = 0, minPrice = apple_stock[0];
+
+    for (let i = 1; i < apple_stock.length; i++) {
+        // calculate current profit when selling at current price
+        const currentProfit = apple_stock[i] - minPrice;
+        // update max profit 
+        if (currentProfit > maxProfit) maxProfit = currentProfit
+        // update minP price
+        if (apple_stock[i] < minPrice) minPrice = apple_stock[i]
+
+        console.log(`currentProfit: ${currentProfit}, \nmaxProfit: ${maxProfit}, \nminPrice: ${minPrice}\n`)
+    }
+
+    return maxProfit;
 }
+
+console.log(highestProfit([1000, 500, 0]));
 
 module.exports = {highestProfit}
