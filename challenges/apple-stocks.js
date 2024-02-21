@@ -33,7 +33,7 @@ const highestProfit = apple_stock => {
         // update minP price
         if (apple_stock[i] < minPrice) minPrice = apple_stock[i]
 
-        console.log(`currentProfit: ${currentProfit}, maxProfit: ${maxProfit}, minPrice: ${minPrice}`)
+        console.log(`currentProfit: ${currentProfit}, \nmaxProfit: ${maxProfit}, \nminPrice: ${minPrice}\n`)
     }
 
     return maxProfit;
