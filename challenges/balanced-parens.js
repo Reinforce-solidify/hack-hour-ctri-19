@@ -25,7 +25,23 @@
  */
 
 const balancedParens = input => {
+    const matches = {
+        '[': ']',
+        '(': ')',
+        '{': '}'
+    }
 
+    const stack = [];
+    for (let i = 0; i < input.length; i++) {
+        let char = input[i];
+        if (char in matches) stack.push(char)
+        else if (char === ')' || char === ']' ||char === '}') {
+            if (matches[stack.pop()] !== char) return false
+        }
+    }
+
+    return !stack.length;
 };
 
+console.log(balancedParens(' const wow = { yo: thisIsAwesome() }'));
 module.exports = { balancedParens} ;
