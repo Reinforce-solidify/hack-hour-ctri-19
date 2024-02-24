@@ -16,9 +16,16 @@ https://m.wikihow.com/Read-Binary
 */
 
 function binToDec(binString){
+    let output = 0;
+    let count = 0;
+    
+    for (let i = binString.length - 1; i >= 0; i--) {
+        output = output + (Number(binString[i]) * Math.pow(2, count++));
+    }
 
+    return output;
 }
 
-
+console.log(binToDec('0101'));
 
 module.exports = {binToDec};
