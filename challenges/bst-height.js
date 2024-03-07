@@ -24,7 +24,7 @@ and has 3 links.
 */
 
 const bstHeight = tree => {
-  
+
 };
 
 /*
