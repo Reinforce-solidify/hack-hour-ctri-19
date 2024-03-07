@@ -35,10 +35,47 @@ Utilizing recursion is not necessary, nor recommended.
 
 */
 
-const bfs = (root, callback) => {
-  
+BinarySearchTree.prototype.insert = function(val) {
+  if (val <= this.value) {
+    if (this.left) {
+      this.left.insert(val);
+    } else {
+      this.left = new BinarySearchTree(val);
+    }
+  } else {
+    if (this.right) {
+      this.right.insert(val);
+    } else {
+      this.right = new BinarySearchTree(val);
+    }
+  }
 };
 
+// Create the BST and insert nodes
+const four = new BinarySearchTree(4);
+four.insert(2);
+four.insert(7);
+four.insert(1);
+four.insert(3);
+four.insert(9);
+four.insert(8);
+
+const bfs = (root, callback) => {
+  const queue = [root];
+
+  while(queue.length) {
+    const node = queue.shift();
+    callback(node.value);
+
+    if (node.left) queue.push(node.left)
+    if (node.right) queue.push(node.right)
+  }
+};
+
+
+const test = (value) => console.log(value);
+bfs(four, test);
+ 
 /*
 
 Extension:
