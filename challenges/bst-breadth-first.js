@@ -55,10 +55,14 @@ BinarySearchTree.prototype.insert = function(val) {
 const four = new BinarySearchTree(4);
 four.insert(2);
 four.insert(7);
+four.insert(5);
 four.insert(1);
 four.insert(3);
+four.insert(2);
+four.insert(0);
 four.insert(9);
 four.insert(8);
+console.log(four);
 
 const bfs = (root, callback) => {
   const queue = [root];
