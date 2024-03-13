@@ -22,11 +22,45 @@ is 3, because the tallest height of the tree connects the numbers 4 - 7 - 9 - 8
 and has 3 links.
 
 */
-
-const bstHeight = tree => {
-
+BinarySearchTree.prototype.insert = function(val) {
+  if (val <= this.value) {
+    if (this.left) {
+      this.left.insert(val);
+    } else {
+      this.left = new BinarySearchTree(val);
+    }
+  } else {
+    if (this.right) {
+      this.right.insert(val);
+    } else {
+      this.right = new BinarySearchTree(val);
+    }
+  }
 };
 
+// Create the BST and insert nodes
+const four = new BinarySearchTree(4);
+four.insert(2);
+four.insert(7);
+four.insert(5);
+four.insert(1);
+four.insert(3);
+four.insert(2);
+four.insert(0);
+four.insert(9);
+four.insert(8);
+console.log(four);
+
+const bstHeight = tree => {
+  if (tree === null) return ;
+
+  return 1 + Math.max(bstHeight(tree.left, bstHeight(tree.right)));
+};
+
+console.log(bstHeight(four));
+console.time("bstHeight");
+bstHeight(four);
+console.timeEnd('bstHeight');
 /*
   Extension:
 
