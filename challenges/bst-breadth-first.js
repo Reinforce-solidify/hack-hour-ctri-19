@@ -129,7 +129,40 @@ neighbors are traversable and haven't already been visited.
 */
 
 const minimumDistance = grid => {
-  
+  let rows = grid.length, cols = grid[0].length;
+  let directions = [[1, 0], [0, 1], [-1, 0], [0, -1]]; // down, right, up, left
+  let queue = [[0, 0, 0]]; // row, column, distance
+  let visited = new Set(['0,0']);
+  console.log(visited);
+
+  while (queue.length) {
+    let [row, col, distance] = queue.shift();
+    
+    if (grid[row][col] === 2) {
+      return distance;
+    }
+
+    for (let [dr, dc] of directions) {
+      let r = row + dr;
+      let c = col + dc;
+      let key = `${r},${c}`;
+      if (r >= 0 && r < rows && c >= 0 && c < cols && grid[r][c] !== 1 && !visited.has(key)) {
+          queue.push([r, c, distance + 1]);
+          visited.add(key);
+      }
+    }
+    console.log(visited)
+  }
+  return -1;
 };
+
+const case1 = [
+  [0, 0, 1, 1],
+  [0, 0, 1, 2],
+  [1, 0, 0, 0]
+];
+const case2 =[[0, 0, 0, 1, 1, 0, 2, 0]];
+
+console.log(minimumDistance(case1)); // 6
 
 module.exports = {BinarySearchTree, bfs, minimumDistance};
