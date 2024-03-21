@@ -4,6 +4,25 @@ function BinarySearchTree(value) {
   this.left = null;
 }
 
+BinarySearchTree.prototype.insert = function(val) {
+  if (val < this.value) {
+    if (this.left) this.left.insert(val)
+    else this.left = new BinarySearchTree(val)
+  } else if (val > this.value) {
+    if (this.right) this.right.insert(val)
+    else this.right = new BinarySearchTree(val)
+  } else return;
+}
+
+const tree = new BinarySearchTree(4);
+tree.insert(2);
+tree.insert(7);
+tree.insert(1);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+tree.insert(10);
+console.log(tree);
 
 /*
 
@@ -29,9 +48,18 @@ returns 8, becuase 9 - 1 = 8
 */
 
 const bstMinMax = root => {
-  
-};
+  if (!root) return 0;
 
+  let min = root, max = root;
+
+  while(min.left || max.right){
+    if (min.left) min = min.left;
+    if (max.right) max = max.right;
+  }
+  
+  return max.value - min.value;
+};
+console.log(bstMinMax(tree));
 /*
 
 Extension: (not necessarily related in technique to above problem, but
