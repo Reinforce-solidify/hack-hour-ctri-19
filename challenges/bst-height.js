@@ -39,27 +39,26 @@ BinarySearchTree.prototype.insert = function(val) {
 };
 
 // Create the BST and insert nodes
-const four = new BinarySearchTree(4);
-four.insert(2);
-four.insert(7);
-four.insert(5);
-four.insert(1);
-four.insert(3);
-four.insert(2);
-four.insert(0);
-four.insert(9);
-four.insert(8);
-console.log(four);
+const tree = new BinarySearchTree(4);
+tree.insert(2);
+tree.insert(7);
+tree.insert(5);
+tree.insert(1);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+// tree.insert(6);
+console.log(tree);
 
 const bstHeight = tree => {
-  if (tree === null) return ;
+  if (!tree) return 0;
 
   return 1 + Math.max(bstHeight(tree.left, bstHeight(tree.right)));
 };
 
-console.log(bstHeight(four));
+console.log(bstHeight(tree));
 console.time("bstHeight");
-bstHeight(four);
+bstHeight(tree);
 console.timeEnd('bstHeight');
 /*
   Extension:
@@ -88,8 +87,25 @@ console.timeEnd('bstHeight');
   The tree on the right is superbalanced since the difference in height is not more than 1 at any given subtree.
  */
 
-const superbalanced = tree => {
+  const superbalanced = tree => {
+    // helper func to get height of tree
+    function getHeight (node) {
+      if (!node) return 0;
+      return 1 + Math.max(getHeight(node.left), getHeight(node.right));
+    };
   
-};
+    if (!tree) return true;
+    // get the height of left and right of subtrees
+    const lefttHeight = getHeight(tree.left);
+    const rightHeight = getHeight(tree.right);
+    console.log(`node: ${tree.value}`, lefttHeight, rightHeight)
+    // check if the current is balanced
+    const isCurrentBalanced = Math.abs(lefttHeight - rightHeight) <= 1;
+    // console.log(isCurrentBalanced)
+    // Recursively check if left and right subtrees are superbalanced
+    return isCurrentBalanced && superbalanced(tree.left) && superbalanced(tree.right);
+  };
+  
+  console.log(superbalanced(tree));
 
 module.exports = {BinarySearchTree, bstHeight, superbalanced};
