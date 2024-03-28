@@ -38,11 +38,44 @@ BinarySearchTree prototype. Instead, we provide the root as an argument to the
 function.
 
 */
+BinarySearchTree.prototype.insert = function(val) {
+  if (val < this.value) {
+    if (this.left) this.left.insert(val)
+    else this.left = new BinarySearchTree(val)
+  } else if (val > this.value) {
+    if (this.right) this.right.insert(val)
+    else this.right = new BinarySearchTree(val)
+  } else return;
+}
 
-const bstReverse = root => {
-  
+const tree = new BinarySearchTree(4);
+tree.insert(2);
+tree.insert(7);
+tree.insert(1);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+// console.log(tree);
+
+const bstReverse = root => { 
+  if (!root) return null;
+
+  let stack = [root];
+
+  while (stack.length > 0) {
+    let node = stack.pop();
+    // Swap the left and right children
+    [node.left, node.right] = [node.right, node.left];
+
+    // If children exist, push them onto the stack
+    if (node.left) stack.push(node.left);
+    if (node.right) stack.push(node.right);
+  }
+
+  return root;
 };
 
+console.log(bstReverse(tree));
 /*
 
 Extension:
@@ -80,7 +113,20 @@ Math.ceil function)
 */
 
 const sortedArrayToBST = arr => {
-  
+  if (!arr.length) {
+    return null;
+  }
+
+  // Choose the rightmost middle value for the root
+  let mid = Math.ceil((arr.length - 1) / 2);
+  let root = new BinarySearchTree(arr[mid]);
+
+  // Recursively create BST from left and right subarrays
+  root.left = sortedArrayToBST(arr.slice(0, mid));
+  root.right = sortedArrayToBST(arr.slice(mid + 1));
+
+  return root;
 };
 
+console.log(sortedArrayToBST([0,3,4,6,8,9]));
 module.exports = {BinarySearchTree, bstReverse, sortedArrayToBST};

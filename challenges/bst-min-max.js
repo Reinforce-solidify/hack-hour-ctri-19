@@ -85,7 +85,19 @@ The LCA of node 2 and node 8 is node 4.
 */
 
 const lowestCommonAncestor = (root, p, q) => {
-  
+  if (!root) return null;
+
+  // check if both value greater than root value
+  if (p.value > root.value && q.value > root.value) return lowestCommonAncestor(root.right, p, q)
+  // check if both value smaller than root value
+  else if (p.value < root.value && q.value < root.value) return lowestCommonAncestor(root.left, p, q)
+  // if split from root, return root
+  else return root;
+
 };
+
+console.log(lowestCommonAncestor(tree, tree.left.left, tree.left.right).value); // LCA of 1 and 3, should return 2
+console.log(lowestCommonAncestor(tree, tree.right.right, tree.right.right.left).value); // LCA of 9 and 8, should return 9
+console.log(lowestCommonAncestor(tree, tree.left, tree.right.right.left).value); // LCA of 2 and 8, should return 4
 
 module.exports = {BinarySearchTree, bstMinMax, lowestCommonAncestor};
