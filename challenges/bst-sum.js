@@ -13,10 +13,32 @@ function.
 
 */
 
+BinarySearchTree.prototype.insert = function(val) {
+  if (val < this.value) {
+    if (this.left) this.left.insert(val)
+    else this.left = new BinarySearchTree(val)
+  } else if (val > this.value) {
+    if (this.right) this.right.insert(val)
+    else this.right = new BinarySearchTree(val)
+  } else return;
+}
+
+const tree = new BinarySearchTree(4);
+tree.insert(2);
+tree.insert(7);
+tree.insert(1);
+tree.insert(3);
+tree.insert(9);
+tree.insert(8);
+// console.log(tree);
+
 const bstSum = root => {
+  if (!root) return 0;
   
+  return root.value + bstSum(root.left) + bstSum(root.right);
 };
 
+console.log(bstSum(tree));
 /*
 
 Extension:
@@ -54,7 +76,17 @@ function.
 */
 
 const bstReverse = root => {
-  
-};
+  if (!root) return null;
 
+  let temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+
+  bstReverse(root.left);
+  bstReverse(root.right);
+
+  return root;
+};
+// use while loop version in bst-reverse.js
+console.log(bstReverse(tree));
 module.exports = {BinarySearchTree, bstSum, bstReverse};

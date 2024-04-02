@@ -28,18 +28,80 @@ function ListNode(val) {
   this.prev = null;
 }
 
+const list = new DoublyLinkedList();
+
+// // Create nodes
+const node1 = new ListNode(4);
+const node2 = new ListNode(9);
+const node3 = new ListNode(1);
+const node4 = new ListNode(6);
+
+// Connect nodes
+node1.next = node2;
+node2.prev = node1;
+
+node2.next = node3;
+node3.prev = node2;
+
+node3.next = node4;
+node4.prev = node3;
+
+// Update head and tail of the list
+list.head = node1;
+list.tail = node4;
+
+console.log(list);
 /*
 This method should add a node to the end of the doubly linked list
  */
 DoublyLinkedList.prototype.add = function (val) {
+  if (!this.head) {
+    this.head = new ListNode(4);
+    this.tail = this.head;
+  } else {
+    let curr = this.head;
+    while(curr.next) {
+      curr = curr.next;
+    }
+    const newNode = new ListNode(val);
+    curr.next = newNode;
+    newNode.prev = curr;
+    this.tail = newNode;
+  }
+}
 
-};
+list.add(7);
+console.log(list);
 
+DoublyLinkedList.prototype.countLength = function () {
+  if (!this.head) return 0;
+  let count = 1;
+  let curr = this.head;
+
+  while(curr.next) {
+    curr = curr.next;
+    count++;
+  }
+  
+  return count;
+}
+
+console.log(list.countLength());
 /*
 This method should remove the first instance of a node with the inputted value from the doubly linked list
  */
 DoublyLinkedList.prototype.remove = function (val) {
+  if (!this.head) return 
 
+  let curr = this.head;
+
+  while (curr.next) {
+    
+    delete curr;
+    return;
+    }
+    curr = curr.next
+  }
 };
 
 module.exports = { DoublyLinkedList };
