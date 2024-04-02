@@ -18,9 +18,13 @@ drawStairs(6) ->
 */
 
 const drawStairs = n => {
-
+     for (let i = 1; i <= n; i++){
+          const str = ` `.repeat(n - i) + `*`.repeat(i);
+          console.log(str);
+     }
 };
 
+// drawStairs(6);
 /* 
 
 Extension:
@@ -37,17 +41,43 @@ drawStar(3) ->
 -+-
 /|\
 
-drawStar(5) ->
-\ | /
- \|/ 
---+--
- /|\ 
-/ | \
-
+drawStar(7) ->
+\  |  /
+ \ | /
+  \|/ 
+ --+--
+  /|\ 
+ / | \
+/  |  \
 */
 
 const drawStar = n => {
-
+     if (n % 2 === 1) {
+          if (n === 1) {
+               console.log("*");
+               return;
+          } else {
+               const midPoint = Math.ceil(n/2);
+               const countSpace = Math.floor(n/2);
+               
+               for (let i = n; i >= 1; i--) {
+                    let star;
+                    if (i > midPoint){
+                         star = " ".repeat(n - i) + "\\" + " ".repeat(i - midPoint - 1) + "|" + " ".repeat(i - midPoint - 1) + "/" + " ".repeat(n - i);
+                         console.log(star);
+                    } else if (i === midPoint){
+                         star = "-".repeat(midPoint - 1) + "+" + "-".repeat(midPoint - 1);
+                         console.log(star);
+                    } else {
+                         star = " ".repeat(i-1) + "/" + " ".repeat(countSpace - i) + "|" + " ".repeat(countSpace - i) + "\\" + " ".repeat(i-1);
+                         console.log(star);
+                    }  
+               }
+               return;
+          }
+     }
 };
 
+// drawStar(7); 
+ 
 module.exports = { drawStairs, drawStar };
