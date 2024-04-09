@@ -22,7 +22,7 @@ ex: [3, 4, 7, 6, 8, 5, 6] should return 6
 const duplicateNumberAdvanced = array => {
     let k = Math.min(...array);
     let i = 0;
-    
+
     // perform a cyclic sort on the array
     while (i < array.length) {
         let correctIndex = array[i] - k;
