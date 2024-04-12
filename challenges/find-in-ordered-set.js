@@ -9,10 +9,30 @@ findInOrderedSet(nums, 0);  -> true
 findInOrderedSet(nums, 2);  -> false
 */
 
+// to adapt requirement that time complexity better than O(n), we can apply binary search algorithm with O(log n)
 const findInOrderedSet = (array, target) => {
+  let left = 0;
+  let right = array.length - 1;
 
+  while (left <= right) {
+    const mid = Math.floor((left+right) / 2);
+
+    if (array[mid] === target) {
+      return true;
+    }
+    
+    else if (target > array[mid]) {
+      left += 1;
+    }
+    else right -= 1;
+  }
+
+  return false;
 };
 
+const nums = [-3, 0, 8, 13, 37];
+console.log(findInOrderedSet(nums, 0)); // -> true
+console.log(findInOrderedSet(nums, 2)); // -> false
 
 /*
 Extension:
@@ -32,9 +52,26 @@ findIn2dMatrix(matrix, 13); -> true
 findIn2dMatrix(matrix, 42); -> false
 
 */
-
+// 
 const findIn2dMatrix = (matrix, target) => {
+  let row = 0;
+  let col = matrix[0].length - 1;
 
+  while (row < matrix.length && col >= 0) {
+    // console.log(matrix[row][col]);
+    if (matrix[row][col] === target) return true;
+    else if (matrix[row][col] > target) col--; // move left
+    else row++; //move down
+  }
+
+  return false;
 };
 
+const matrix = [
+  [-3, -1,  2,  4,  5],
+  [ 6,  7,  8, 13, 37],
+  [41, 49, 50, 61, 75]
+];
+console.log(findIn2dMatrix(matrix, 13)); //-> true
+console.log(findIn2dMatrix(matrix, 42)); //-> false
 module.exports = { findInOrderedSet, findIn2dMatrix };
