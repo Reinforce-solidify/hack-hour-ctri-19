@@ -29,9 +29,9 @@ console.log(fizzbuzz(16));
 
 /*
 
-Extension: 
-Write a function that returns an array containing the numbers 1 to NUM.
+Extension: ining the numbers 1 to NUM.
 
+Write a function that returns an array conta
 Put "fizz" in place of numbers divisble by 3 but not by 5 or 7,
 "buzz" in place of numbers divisble by 5 but not by 3 or 7,
 "bazz" in place of numbers divisble by 7 but not by 3 or 5,
